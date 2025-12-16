@@ -25,14 +25,68 @@ static void DrawHeader(string title, int width, bool box = false)
 
 }
 
+static void DrawFooter(int width)
+{
+    Console.WriteLine("└" + new string('─', width - 2) + "┘");
+}
+
+static void DrawLine(string text, int width, bool centered = false)
+{
+
+    int padding = 2;
+    int fullLengthPadding = (width - text.Length);
+    string textToDraw = new string(' ', padding) + text + new string(' ', padding);
+
+    int totalLines = width - 2 - text.Length;
+    int left = totalLines / 2;
+    int right = totalLines - left;
+
+    if (centered)
+        Console.WriteLine("│" + new string(' ', left) + text + new string(' ', right) + "│");
+    else
+        Console.WriteLine($"│{textToDraw.PadRight(width - 2)}│");
+
+}
+
+static void DrawMenuItem(int width, string text, bool active = false)
+{
+    if (active)
+    {
+        Console.Write("│ > ");
+
+        Console.BackgroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.Black;
+
+
+        int fullLength = text.Length + 5;
+        Console.Write(text);
+
+        Console.ResetColor();
+
+        int remainingSpace = width - (fullLength);
+        Console.WriteLine(new string(' ', remainingSpace) + "│");
+
+    }
+    else
+    {
+        Console.WriteLine($"│  {text.PadRight(width-5)} │");
+    }
+}
+
+static void DrawEmptyBox(int width, bool lines = true)
+{
+    if (lines)
+        Console.WriteLine($"│{new string(' ', width - 2)}│");
+    else
+        Console.WriteLine($"{new string(' ', width)}");
+}
+
 while (navigatingMenu)
 {
     Console.Clear();
 
     Console.BackgroundColor = ConsoleColor.White;
     Console.ForegroundColor = ConsoleColor.Black;
-
-    
 
     Console.WriteLine("                                                        ");
     Console.WriteLine("  ▄█████ ██▄  ▄██  ▄▄▄  ▄▄  ▄▄  ▄▄▄   ▄▄▄▄ ▄▄▄▄▄ ▄▄▄▄   ");  
@@ -45,39 +99,28 @@ while (navigatingMenu)
     Console.ResetColor();
 
 
-    Console.WriteLine("                                                        ");
-    DrawHeader(" Main Menu ", 56, true);
-    Console.WriteLine("│                                                      │");
 
-    DrawHeader(" Use arrowkeys to navigate and choose an option: ", 56, false);
 
-    Console.WriteLine("│                                                      │");
-
+    DrawEmptyBox(56, false);
+    DrawHeader(" MAIN MENU ", 56, true);
+    DrawEmptyBox(56, true);
+    DrawLine("Use arrowkeys to navigate and choose an option:", 56 , true);
+    DrawEmptyBox(56, true);
+  
     for (int i = 0; i < menuItems.Length; i++)
     {
         if (i == selectedItem)
         {
-            Console.Write("│ > ");
-
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-
-                Console.Write($" {menuItems[i]} ");
-
-            Console.ResetColor();
-
-            int remainingSpace = 49 - menuItems[i].Length;
-            Console.WriteLine(new string(' ', remainingSpace) + "│");
-
+            DrawMenuItem(56, menuItems[i], true);
         }
         else
         {
-            Console.WriteLine($"│  {menuItems[i].PadRight(51)} │");
+            DrawMenuItem(56, menuItems[i], false);
         }
     }
 
-    Console.WriteLine("│                                                      │");
-    Console.WriteLine("└──────────────────────────────────────────────────────┘");
+    DrawEmptyBox(56, true);
+    DrawFooter(56);
 
 
     var key = Console.ReadKey(true).Key;
