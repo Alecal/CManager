@@ -1,6 +1,7 @@
-﻿namespace CManager.Domain.Models;
+﻿using CManager.Domain.Interfaces;
+namespace CManager.Domain.Models;
 
-public class Customer
+public class Customer : ICustomer
 {
     public Guid Id { get; set; }
     public string FirstName { get; set; } = null!;
