@@ -1,23 +1,57 @@
 ﻿Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 int selectedItem = 0;
-string[] menuItems = new string[]
-{
+string[] menuItems =
+[
     "Create new customer",
     "View all customers",
     "Quit application"
-};
+];
 
 bool navigatingMenu = true;
 
+static void DrawHeader(string title, int width, bool box = false)
+{
+    string formattedTitle = $" {title} ";
+
+    int totalLines = width - 2 - formattedTitle.Length;
+    int left = totalLines / 2;
+    int right = totalLines - left;
+
+    if (box)
+        Console.WriteLine("┌" + new string('─', left) + formattedTitle + new string('─', right) + "┐");
+    else
+        Console.WriteLine("│" + new string(' ', left) + formattedTitle + new string(' ', right) + "│");
+
+}
+
 while (navigatingMenu)
 {
-    Console.ResetColor();
     Console.Clear();
-    Console.WriteLine("┌────────────────────── MENU ─────────────────────────┐");
-    Console.WriteLine("│                                                     │");
-    Console.WriteLine("│ Use arrowkeys to navigate and choose an option:     │");
-    Console.WriteLine("│                                                     │");
+
+    Console.BackgroundColor = ConsoleColor.White;
+    Console.ForegroundColor = ConsoleColor.Black;
+
+    
+
+    Console.WriteLine("                                                        ");
+    Console.WriteLine("  ▄█████ ██▄  ▄██  ▄▄▄  ▄▄  ▄▄  ▄▄▄   ▄▄▄▄ ▄▄▄▄▄ ▄▄▄▄   ");  
+    Console.WriteLine("  ██     ██ ▀▀ ██ ██▀██ ███▄██ ██▀██ ██ ▄▄ ██▄▄  ██▄█▄  "); 
+    Console.WriteLine("  ▀█████ ██    ██ ██▀██ ██ ▀██ ██▀██ ▀███▀ ██▄▄▄ ██ ██  ");
+    Console.WriteLine("                                                        ");
+    Console.WriteLine("            Customer management made simple!            ");
+    Console.WriteLine("                                                        ");
+
+    Console.ResetColor();
+
+
+    Console.WriteLine("                                                        ");
+    DrawHeader(" Main Menu ", 56, true);
+    Console.WriteLine("│                                                      │");
+
+    DrawHeader(" Use arrowkeys to navigate and choose an option: ", 56, false);
+
+    Console.WriteLine("│                                                      │");
 
     for (int i = 0; i < menuItems.Length; i++)
     {
@@ -32,18 +66,18 @@ while (navigatingMenu)
 
             Console.ResetColor();
 
-            int remainingSpace = 48 - menuItems[i].Length;
+            int remainingSpace = 49 - menuItems[i].Length;
             Console.WriteLine(new string(' ', remainingSpace) + "│");
 
         }
         else
         {
-            Console.WriteLine($"│  {menuItems[i].PadRight(50)} │");
+            Console.WriteLine($"│  {menuItems[i].PadRight(51)} │");
         }
     }
 
-    Console.WriteLine("│                                                     │");
-    Console.WriteLine("└─────────────────────────────────────────────────────┘");
+    Console.WriteLine("│                                                      │");
+    Console.WriteLine("└──────────────────────────────────────────────────────┘");
 
 
     var key = Console.ReadKey(true).Key;
