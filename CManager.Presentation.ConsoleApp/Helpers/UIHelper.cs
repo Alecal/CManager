@@ -78,13 +78,13 @@ public class UIHelper
     {
         if (active)
         {
-            Console.Write("│ > ");
+            Console.Write("│ 🬃");
 
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
 
 
-            int fullLength = text.Length + 5;
+            int fullLength = text.Length + 4;
             Console.Write(text);
 
             Console.ResetColor();
