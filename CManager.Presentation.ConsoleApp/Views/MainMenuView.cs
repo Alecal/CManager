@@ -1,4 +1,6 @@
-﻿namespace CManager.Presentation.ConsoleApp.Views;
+﻿using CManager.Presentation.ConsoleApp.Helpers;
+
+namespace CManager.Presentation.ConsoleApp.Views;
 
 public class MainMenuView
 {
@@ -11,7 +13,8 @@ public class MainMenuView
         string[] menuItems =
         [
             "Create new customer",
-            "View all customers",
+            "View and manage all customers",
+            "Find and edit customer",
             "Quit application"
         ];
 
@@ -49,31 +52,30 @@ public class MainMenuView
 
     if (key == ConsoleKey.UpArrow)
     { selectedItem = (selectedItem == 0) ? menuItems.Length - 1 : selectedItem - 1; }
-    else if
-        (key == ConsoleKey.DownArrow)
+    else if (key == ConsoleKey.DownArrow)
     { selectedItem = (selectedItem == menuItems.Length - 1) ? 0 : selectedItem + 1; }
-    else if
-        (key == ConsoleKey.Enter)
-    {
-        if (selectedItem == 0)
+    else if (key == ConsoleKey.Enter)
         {
-            Console.WriteLine("Navigating to: Create Customer...");
-                    NewCustomerView customerView = new();
-                    customerView.Show();
+            if (selectedItem == 0)
+            {
+                NewCustomerView customerView = new();
+                customerView.Show();
+            }
+            else if (selectedItem == 1)
+            {
+                 ViewAllCustomersView customerView = new();
+                 customerView.Show();
+            }
+            else if (selectedItem == 2)
+            {
+                  Console.WriteLine("Not yet! Press any key to continue...");
+                    Console.ReadKey();
+            }
+            else if (selectedItem == 3)
+            {
+                navigatingMenu = false;
+            }
         }
-        else if (selectedItem == 1)
-        {
-            Console.WriteLine("Navigating to: View All...");
-
-
-
-            Console.ReadKey();
-        }
-        else if (selectedItem == 2)
-        {
-            navigatingMenu = false;
-        }
-    }
     }
     }
 }

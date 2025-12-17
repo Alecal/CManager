@@ -2,10 +2,10 @@
 
 namespace CManager.Domain.Interfaces;
 
-public interface ICustomerRepository
+public interface ICustomerRepo
 {
-    bool Add(Customer customer);
-    IEnumerable<Customer> GetAll();
+    bool AddCustomer(List<Customer> customers);
+    List<Customer> GetAll();
     Customer GetCustomer(string id);
     bool Delete(string id);
 }

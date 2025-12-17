@@ -1,19 +1,18 @@
-﻿namespace CManager.Presentation.ConsoleApp.Views;
+﻿namespace CManager.Presentation.ConsoleApp.Helpers;
 
 public class UIHelper
 {
     public static void DrawHeader(string title, int width, bool box = false)
     {
-        string formattedTitle = $" {title} ";
 
-        int totalLines = width - 2 - formattedTitle.Length;
+        int totalLines = width - 2 - title.Length;
         int left = totalLines / 2;
         int right = totalLines - left;
 
         if (box)
-            Console.WriteLine("┌" + new string('─', left) + formattedTitle + new string('─', right) + "┐");
+            Console.WriteLine("┌" + new string('─', left) + title + new string('─', right) + "┐");
         else
-            Console.WriteLine("│" + new string(' ', left) + formattedTitle + new string(' ', right) + "│");
+            Console.WriteLine("│" + new string(' ', left) + title + new string(' ', right) + "│");
 
     }
     public static void DrawLogo()
@@ -32,9 +31,29 @@ public class UIHelper
         Console.ResetColor();
     }
 
-    public static void DrawFooter(int width)
+    public static void DrawFooter(int width, string title = "", string color = "Black")
     {
-        Console.WriteLine("└" + new string('─', width - 2) + "┘");
+
+        int totalLines = width - 2 - title.Length;
+        int left = totalLines / 2;
+        int right = totalLines - left;
+
+        Console.Write("└" + new string('─', left));
+
+        ConsoleColor selectedColor = color.ToLower() switch
+        {
+            "black" => ConsoleColor.Black,
+            "grey" => ConsoleColor.DarkGray,
+            "white" => ConsoleColor.White,
+            _ => ConsoleColor.Black
+        };
+        Console.ForegroundColor = selectedColor;
+        Console.Write(title);
+        Console.ResetColor();
+        Console.Write(new string('─', right) + "┘");
+        Console.WriteLine();
+
+
     }
 
     public static void DrawLine(string text, int width, bool centered = false)

@@ -1,4 +1,8 @@
-﻿namespace CManager.Presentation.ConsoleApp.Views;
+﻿using CManager.Infrastructure.Services;
+using CManager.Infrastructure.Repo;
+using CManager.Presentation.ConsoleApp.Helpers;
+
+namespace CManager.Presentation.ConsoleApp.Views;
 
 public class NewCustomerView
 {
@@ -152,7 +156,22 @@ public class NewCustomerView
 
             if (finalKey == ConsoleKey.Enter)
             {
+
+                var customerRepo = new CustomerRepo();
+                var customerService = new CustomerService(customerRepo);
+                var result = customerService.CreateCustomer(firstName, lastName, email, phoneNumber, streetName, postalCode, city);
+
+                if (result)
+                {
+                    Console.WriteLine("Customer created");
+                    Console.WriteLine($"Name: {firstName} {lastName}");
+                }
+                else
+                {
+                    Console.WriteLine("Something went wrong. Please try again");
+                }
                 success = 1;
+                
             }
             else if (finalKey == ConsoleKey.Escape)
             {

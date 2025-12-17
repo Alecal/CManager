@@ -14,7 +14,7 @@ public class CustomerService
             PhoneNumber = phoneNumber,
             Address = new Adress
             {
-                StreetAdress = streetAdress,
+                StreetAddress = streetAdress,
                 City = city,
                 PostalCode = postalCode
             }
