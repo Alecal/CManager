@@ -25,8 +25,6 @@ public class UIHelper
         Console.WriteLine("  ██     ██ ▀▀ ██ ██▀██ ███▄██ ██▀██ ██ ▄▄ ██▄▄  ██▄█▄  ");
         Console.WriteLine("  ▀█████ ██    ██ ██▀██ ██ ▀██ ██▀██ ▀███▀ ██▄▄▄ ██ ██  ");
         Console.WriteLine("                                                        ");
-        Console.WriteLine("            Customer management made simple!            ");
-        Console.WriteLine("                                                        ");
 
         Console.ResetColor();
     }

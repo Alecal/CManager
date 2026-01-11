@@ -4,13 +4,12 @@ using CManager.Domain.Models;
 using CManager.Infrastructure.Repo;
 using CManager.Infrastructure.Services;
 using CManager.Presentation.ConsoleApp.Helpers;
+using System.Linq;
 
 public class ViewAllCustomersView
 {
-    // 1. Declare the field
     private readonly ICustomerService _customerService;
 
-    // 2. Initialize it in the constructor
     public ViewAllCustomersView()
     {
         var repo = new CustomerRepo();
@@ -37,10 +36,14 @@ public class ViewAllCustomersView
         }
         else
         {
-            int i = 0;
-            foreach (var customer in customers)
+
+            var customerArray = customers.ToArray();
+
+            for (int index = 0; index < customerArray.Length; index++)
             {
-                i++;
+                var customer = customerArray[index];
+                int displayCount = index + 1;
+
                 UIHelper.DrawHeader($"ID: {customer.Id}", 56, true);
                 UIHelper.DrawEmptyBox(56, true);
                 UIHelper.DrawLine($"Name: {customer.FirstName} {customer.LastName}", 56, true);
@@ -54,8 +57,8 @@ public class ViewAllCustomersView
                 UIHelper.DrawLine($"{FormattingService.Postalcode(customer.Address.PostalCode)}, {customer.Address.City.ToUpper()}", 56, true);
 
                 UIHelper.DrawEmptyBox(56, true);
-                UIHelper.DrawFooter(56, $" ─ {i} ─ ", "grey");
-                UIHelper.DrawEmptyBox(56,false);
+                UIHelper.DrawFooter(56, $" ─ {displayCount} ─ ", "grey");
+                UIHelper.DrawEmptyBox(56, false);
             }
         }
     }
@@ -63,7 +66,8 @@ public class ViewAllCustomersView
     public void Show()
     {
         ViewAllCustomers();
-        Console.WriteLine("Press any key to return to the main menu...");
-        Console.ReadKey();
+        Console.WriteLine("Enter customer number to edit customer...");
+        Console.ReadLine();
+        Console.Clear();
     }
 }
