@@ -4,6 +4,10 @@ public class UIHelper
 {
     public static void DrawHeader(string title, int width, bool box = false)
     {
+        if (title.Length > width - 4)
+        {
+            title = title.Substring(0, width - 7) + "...";
+        }
 
         int totalLines = width - 2 - title.Length;
         int left = totalLines / 2;
@@ -31,6 +35,10 @@ public class UIHelper
 
     public static void DrawFooter(int width, string title = "", string color = "Black")
     {
+        if (title.Length > width - 4)
+        {
+            title = title.Substring(0, Math.Max(0, width - 7)) + "...";
+        }
 
         int totalLines = width - 2 - title.Length;
         int left = totalLines / 2;
@@ -56,6 +64,10 @@ public class UIHelper
 
     public static void DrawLine(string text, int width, bool centered = false)
     {
+        if (text.Length > width - 6)
+        {
+            text = text.Substring(0, width - 9) + "...";
+        }
 
         int padding = 2;
         int fullLengthPadding = (width - text.Length);

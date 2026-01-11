@@ -44,17 +44,10 @@ public class ViewAllCustomersView
                 var customer = customerArray[index];
                 int displayCount = index + 1;
 
-                UIHelper.DrawHeader($"ID: {customer.Id}", 56, true);
+                UIHelper.DrawHeader($" ID: {customer.Id} ", 56, true);
                 UIHelper.DrawEmptyBox(56, true);
                 UIHelper.DrawLine($"Name: {customer.FirstName} {customer.LastName}", 56, true);
                 UIHelper.DrawLine($"Email: {customer.Email}", 56, true);
-
-                UIHelper.DrawLine($"Phone: {FormattingService.Mobile(customer.PhoneNumber)}", 56, true);
-                UIHelper.DrawEmptyBox(56, true);
-                UIHelper.DrawLine($"Address:", 56, true);
-                UIHelper.DrawLine($"{customer.Address.StreetAddress}", 56, true);
-
-                UIHelper.DrawLine($"{FormattingService.Postalcode(customer.Address.PostalCode)}, {customer.Address.City.ToUpper()}", 56, true);
 
                 UIHelper.DrawEmptyBox(56, true);
                 UIHelper.DrawFooter(56, $" ─ {displayCount} ─ ", "grey");

@@ -55,7 +55,7 @@ public class EditCustomerView
             {
                 case "delete":
                     _customerService.DeleteCustomer(customerId);
-                    Console.WriteLine("Customer deleted succesfully. Press any key to go back..");
+                    Console.WriteLine("Customer deleted successfully. Press any key to go back..");
                     Console.ReadKey();
                     isRunning = false;
                     break;
