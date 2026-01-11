@@ -9,4 +9,6 @@ public interface ICustomerService
     IEnumerable<Customer> GetAllCustomers(out bool hasError);
 
     Customer GetCustomer(string id);
+
+    bool DeleteCustomer(string id);
 }

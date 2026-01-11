@@ -54,7 +54,7 @@ public class EditCustomerView
             switch (input)
             {
                 case "delete":
-                    //Här ska det tas bort customer
+                    _customerService.DeleteCustomer(customerId);
                     Console.WriteLine("Customer deleted. Press any key to go back to main menu...");
                     Console.ReadKey();
                     isRunning = false;

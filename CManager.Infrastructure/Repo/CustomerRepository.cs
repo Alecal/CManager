@@ -77,9 +77,22 @@ public class CustomerRepo : ICustomerRepo
         return null!;
     }
 
-    public bool Delete(string id)
+    public bool Delete(string id) // AI
     {
-        throw new NotImplementedException();
+        var customers = GetAll(); // Hämta alla kunder
+
+        if (Guid.TryParse(id, out Guid customerId)) // Konvertera string till GUID
+        {
+            var customerToRemove = customers.FirstOrDefault(c => c.Id == customerId); // Hitta kunden att ta bort
+
+            if (customerToRemove != null)
+            {
+                customers.Remove(customerToRemove); // Ta bort kunden från listan
+                return AddCustomer(customers); // Spara ny lista och return
+            }
+        }
+
+        return false;
     }
 }
 
