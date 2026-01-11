@@ -156,7 +156,7 @@ public class NewCustomerView
 
             if (finalKey == ConsoleKey.Enter)
             {
-
+                
                 var customerRepo = new CustomerRepo();
                 var customerService = new CustomerService(customerRepo);
                 var result = customerService.CreateCustomer(firstName, lastName, email, phoneNumber, streetName, postalCode, city);

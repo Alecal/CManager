@@ -65,9 +65,36 @@ public class ViewAllCustomersView
 
     public void Show()
     {
-        ViewAllCustomers();
-        Console.WriteLine("Enter customer number to edit customer...");
-        Console.ReadLine();
+
+        bool isRunning = true;
+
+        while (isRunning)
+        {
+            ViewAllCustomers();
+
+            Console.WriteLine("Enter [Customer Number] to edit, or leave empty and [Enter] to go back:");
+            string input = Console.ReadLine() ?? "";
+
+            switch (input){
+
+                case "":
+                    // Gå tillbaka om tomt
+                    isRunning = false;
+                    break;
+
+                case string s when int.TryParse(s, out int selection):
+                    EditCustomerView editCustomer = new();
+                    editCustomer.Show();
+                    break;
+
+                default:
+                   Console.WriteLine("Please enter a valid customer number!");
+                    Console.ReadKey();
+                    break;
+            }
+        }
+
         Console.Clear();
+        Console.Write("\x1b[3J"); // Ta bort all text i konsolen
     }
 }

@@ -1,4 +1,4 @@
-﻿using CManager.Presentation.ConsoleApp.Views; // This "plugs in" your views
+﻿using CManager.Presentation.ConsoleApp.Views;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 

@@ -86,8 +86,8 @@ public class MainMenuView
                 {
                     if (selectedItem == 0)
                     {
-                        NewCustomerView customerView = new();
-                        customerView.Show();
+                        NewCustomerView newCustomerView = new();
+                        newCustomerView.Show();
                     }
                     else if (selectedItem == 1)
                     {
