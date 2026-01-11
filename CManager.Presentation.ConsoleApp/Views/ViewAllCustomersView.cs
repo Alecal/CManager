@@ -71,24 +71,30 @@ public class ViewAllCustomersView
         while (isRunning)
         {
             ViewAllCustomers();
+            var customers = _customerService.GetAllCustomers(out _).ToArray();
 
             Console.WriteLine("Enter [Customer Number] to edit, or leave empty and [Enter] to go back:");
             string input = Console.ReadLine() ?? "";
 
-            switch (input){
-
+            switch (input)
+            {
                 case "":
-                    // Gå tillbaka om tomt
                     isRunning = false;
                     break;
 
-                case string s when int.TryParse(s, out int selection):
-                    EditCustomerView editCustomer = new();
-                    editCustomer.Show();
+                    // Tackar ai för denna
+                case string s when int.TryParse(s, out int index) && index > 0 && index <= customers.Length:
+                    // Få tag i kunden baserat på nummer i listan
+                    var selectedCustomer = customers[index - 1];
+
+                    EditCustomerView editView = new();
+
+                    // Skicka med guiden som string till editView
+                    editView.Show(selectedCustomer.Id.ToString());
                     break;
 
                 default:
-                   Console.WriteLine("Please enter a valid customer number!");
+                    Console.WriteLine("Please enter a valid customer number!");
                     Console.ReadKey();
                     break;
             }

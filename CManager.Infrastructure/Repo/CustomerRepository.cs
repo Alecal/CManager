@@ -68,7 +68,13 @@ public class CustomerRepo : ICustomerRepo
 
     public Customer GetCustomer(string id)
     {
-        throw new NotImplementedException();
+        var customers = GetAll();
+
+        if (Guid.TryParse(id, out Guid customerId))
+        {
+            return customers.FirstOrDefault(c => c.Id == customerId)!;
+        }
+        return null!;
     }
 
     public bool Delete(string id)

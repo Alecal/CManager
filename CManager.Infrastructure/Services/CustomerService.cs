@@ -60,5 +60,15 @@ public class CustomerService : ICustomerService
         }
 
     }
+
+    public Customer GetCustomer(string id)
+    {
+        return _customerRepo.GetCustomer(id);
+    }
+
+    public bool DeleteCustomer(string id)
+    {
+        return _customerRepo.Delete(id);
+    }
 }
 
